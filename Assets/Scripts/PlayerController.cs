@@ -57,7 +57,8 @@ public class PlayerController : MonoBehaviour
         if (shootAction.triggered)
         {
             // [13] spawn a projectile
-            ProjectileObjectPool.staticInstance.Acquire();
+            GameObject projectile = ProjectileObjectPool.staticInstance.Acquire();
+            projectile.transform.SetPositionAndRotation(transform.position, projectilePrefab.transform.rotation);
         }
     }
 }
