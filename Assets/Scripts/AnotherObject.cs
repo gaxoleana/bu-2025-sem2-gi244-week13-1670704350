@@ -2,28 +2,36 @@ using UnityEngine;
 
 public class AnotherObject : MonoBehaviour
 {
-    // Update is called once per frame
+    private void Start()
+    {
+        Debug.Log(GameSettings.volume);
+        GameSettings.volume = 0;
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.A))
         {
-
+            PersistentObject.staticPublicDebugText = "A";
         }
         else if (Input.GetKeyDown(KeyCode.B))
         {
-
+            Debug.Log(PersistentObject.staticPublicDebugText);
         }
         else if (Input.GetKeyDown(KeyCode.C))
         {
-
+            PersistentObject.SetStaticPrivateText("C");
         }
         else if (Input.GetKeyDown(KeyCode.D))
         {
-
+            var go = GameObject.Find("PersistentObject");
+            var p = go.GetComponent<PersistentObject>();
+            p.SetInstancePrivateText("D");
         }
         else if (Input.GetKeyDown(KeyCode.E))
         {
-
+            PersistentObject.GetInstance().SetInstancePrivateText("E");
+            PersistentObject.GetInstance().gameObject.name = "Keng";
         }
     }
 }
